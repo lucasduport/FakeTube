@@ -1,0 +1,75 @@
+<main>
+  <video controls>
+  <source src="/{{currentPost.video}}" type="video/mp4">
+    Votre navigateur ne prend pas en charge la lecture de vidéos HTML5.
+  </video>
+  <br/>
+  <h3 class="title">{{currentPost.title}}</h3>
+  <br/>
+  <p class="description">{{currentPost.description}}</p>
+  <br/>
+  <ul class="tags">
+    {{#each currentPost.tags}}
+      <li><a href="/posts/search?searchValue={{this}}">{{this}}</a></li>
+    {{/each}}
+  </ul>
+  <p class="author">posted by <a href="/users/profile/{{currentPost.fk_userId}}">{{currentPost.username}}</a> on {{formatDateString currentPost.createdAt}}</p>
+  <h3>Comments</h3>
+    <ul class="comments">
+      <li>
+        <textarea id="comment-text" class="commentText" name="comment" placeholder="Write your comment"></textarea>
+        <button
+          id="comment-button"
+          class="commentButton"          
+          data-post-id="{{currentPost.id}}"
+        >Send</button>
+        
+        <script>
+          document.getElementById('comment-button').addEventListener('click', function(ev){
+          let commentText = document.getElementById('comment-text').value;
+          
+          if (!commentText) return;
+          var postId = ev.currentTarget.dataset.postId;
+          fetch("/comments/create", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(
+              {
+                postId: postId,
+                comment: commentText
+              }
+            )
+          })
+          .then(response => response.json())
+          .then(data => {
+            // I used this approach to resolve a bug (if you 
+            // comment several times without refresh, it will be disordered)
+            var lastComment = document.getElementById('comment');
+            let commentFragment = document.createElement('template');
+            commentFragment.innerHTML = 
+            `<li id="comment" class="comment">
+            <p class="comment-date">${(new Date()).toLocaleString("en-us",
+              {
+                dateStyle:"long",
+                timeStyle:"medium"
+              })}</p>
+            <h5 class="username"><a href="/users/profile/${data.userId}">${data.username}</a></h5>
+            <p class="comment-content">${data.commentText}</p>`
+          var parentElement = lastComment.parentElement;
+          parentElement.insertBefore(commentFragment.content, lastComment);
+          var textarea = document.getElementById("comment-text");
+          textarea.value = "";
+          });
+          });
+        </script>
+      </li>
+      <br/>
+      <br/>
+      <li id="comment"></li>
+      {{#each currentPost.comments}}
+        {{>comment this}}
+      {{/each}}
+    </ul>
+</main>

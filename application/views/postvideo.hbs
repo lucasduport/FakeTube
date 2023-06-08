@@ -1,0 +1,65 @@
+<main>
+  <h1>Post your video</h1>
+  <form
+    class="postForm"
+    method="post"
+    action="/posts/create"
+    enctype="multipart/form-data"
+  >
+    <ul>
+      <li>
+        <label for="title">Title:</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="Write your title"
+        />
+      </li>
+      <li>
+        <label for="description">Description:</label>
+        <textarea
+          id="description"
+          name="description"
+          rows="7"
+          cols="120"
+        ></textarea>
+      </li>
+      <li>
+        <label for="video">Upload your video:</label>
+        <!-- I tried to accept only video formats allowed -->
+        <input
+          type="file"
+          id="video"
+          name="uploadVideo"
+          accept="video/mp4,video/webm,video/ogg"
+        />
+      </li>
+      <li>
+        <label for="tags">Tags:</label>
+        <input
+          type="text"
+          id="tags"
+          name="tags"
+          placeholder="Write your tags"
+        />
+      </li>
+      <li>
+        <label>
+          <input type="checkbox" name="isPublic" value="1" />
+          Available publicly
+        </label>
+      </li>
+      <li>
+        <label>
+          <input type="checkbox" name="agree" value="yes" />
+          I have read and accept
+          <a href="">Acceptable Use Policy</a>
+        </label>
+      </li>
+      <li>
+        <input type="submit" value="Post" />
+      </li>
+    </ul>
+  </form>
+</main>

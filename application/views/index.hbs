@@ -1,0 +1,13 @@
+<main>
+  {{#if search}}
+    <h1>Search results for "{{search}}"</h2>
+  {{else}}
+    <h1>Latests posts</h1>
+  {{/if}}
+  <h2 id="post-counter"></h2>
+  <ul id="posts-list" class="posts">
+    {{#each posts}}
+      {{>card this}}
+    {{/each}}
+  </ul>
+</main>

@@ -1,0 +1,8 @@
+<li id="comment" class="comment">
+  <p class="comment-date">{{formatDateString this.createdAt}}</p>
+  <h5 class="username"><a
+      href="/users/profile/{{this.fk_authorId}}"
+    >{{this.username}}</a></h5>
+  <p class="comment-content">{{this.text}}</p>
+
+</li>

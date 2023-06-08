@@ -1,0 +1,43 @@
+<main>
+  {{#if isMyProfile}}
+    {{> logout}}
+  <div class="profile">
+  <img class="profilePicture" src="/public/images/samplePP.png" alt="Profile Picture" />
+  <h2 class="username">{{user.username}}</h2>
+  <h2 class="email">{{user.email}}</h2>
+  {{else}}
+  <div class="profile">
+  <img class="profilePicture" src="/public/images/samplePP.png" alt="Profile Picture" />
+  <h2 class="username">{{myProfile.username}}</h2>
+  <h2 class="email">{{myProfile.email}}</h2>
+  {{/if}}
+  </div>
+  <br/>
+  <br/>
+  <ul class="posts">
+    {{#each posts}}
+    <li class="post">
+      {{>profileCard this}}
+      {{#if this.isMyProfile}}
+      <ul class="editPost">
+        <li >
+          <a class="editIcons"  href="/posts/delete/{{this.id}}">
+              <button  class="button">
+                  <img  src="/public/images/delete.png" alt="delete"/>
+              </button>
+          </a>
+        </li>
+        <li >
+        <a class="editIcons" href="/posts/edit/{{this.id}}">
+          <button  class="button">
+            <img   src="/public/images/{{this.publicText}}.png" alt="{{this.publicText}}"/>
+          </button>
+        </a>
+        </li>
+      </ul>
+      {{/if}}
+    </li>
+    {{/each}}
+  </ul>
+
+</main>

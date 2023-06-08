@@ -1,0 +1,74 @@
+<main>
+  <h1>Registration page</h1>
+  <form
+    class="loginForm"
+    action="/users/register"
+    method="post"
+    enctype="application/x-www-form-urlencoded"
+  >
+    <ul>
+      <p>If you already have an account,
+        <a class="underlined" href="/login">please login here</a></p>
+      <li>
+        <label for="username">Username:</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Write your username"
+        />
+        <p id="username-error"></p>
+      </li>
+      <li>
+        <label for="email">Email: </label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Write your email"
+        />
+        <p id="email-error"></p>
+      </li>
+      <li>
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Write your password"
+        />
+        <p id="password-error"></p>
+      </li>
+      <li>
+        <label for="password">Confirm password:</label>
+        <input
+          type="password"
+          id="passwordconf"
+          placeholder="Confirm your password"
+        />
+        <p id="passwordconf-error"></p>
+      </li>
+      <li>
+        <label>
+          <input type="checkbox" name="age" id="13+" />
+          I am 13 years old or older
+        </label>
+      </li>
+      <li>
+        <label>
+          <input type="checkbox" name="tos" id="TOS" />
+          I have read and accept the
+          <a href="">TOS and Privacy rules</a>
+        </label>
+      </li>
+      <li>
+        <p class="discrete-info">By registering, you are acknowledging that the
+          information provided above is accurate. If it is found to be
+          inaccurate, you may be subject to legal action.</p>
+      </li>
+      <li>
+        <input type="submit" value="Register" />
+      </li>
+    </ul>
+  </form>
+</main>

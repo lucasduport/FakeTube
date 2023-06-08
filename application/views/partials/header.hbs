@@ -1,0 +1,43 @@
+<header>
+  <a href="/">
+    <img class="icon" src="/public/favicon.ico" alt="logo" height="100" />
+  </a>
+  <nav>
+    <ul>
+      <li>
+        <form
+          class="search-form"
+          action="/posts/search"
+          method="get"
+          enctype="application/x-www-form-urlencoded"
+        >
+          <input
+            id="search-text"
+            type="text"
+            name="searchValue"
+            placeholder="Search"
+            class="search-text"
+          />
+          <button type="submit" class="search-button">
+            <img
+              src="/public/images/searchIcon.png"
+              alt="Search"
+              class="search-icon"
+            />
+          </button>
+        </form>
+      </li>
+      <li class="border"><a href="/"><strong>Home</strong></a></li>
+      <li class="border"><a href="/postvideo"><strong>Post video</strong></a></li>
+      {{#if isLoggedIn}}
+        <li class="border"><a href="/users/profile/{{user.userId}}"><strong
+            >Profile</strong></a></li>
+      {{else}}
+        <li class="border"><a href="/register"><strong
+            >Register</strong></a></li>
+        <li class="border"><a href="/login"><strong>Login</strong></a></li>
+      {{/if}}
+
+    </ul>
+  </nav>
+</header>
